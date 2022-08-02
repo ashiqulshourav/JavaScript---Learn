@@ -539,8 +539,122 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 
 //==================== Higher Order function <br>
 
+// function hello() {
+//     return function() {
+//         console.log(`Hello World!`)
+//     }
+// }
 
-//Ending Summary
+// hello()();
+
+// example 1 without higher order function
+// var numbers = [1, 2, 3];
+
+// var result = [];
+
+// for (let i = 0; i < numbers.length; i++) {
+//     result.push(numbers[i] * 2)
+// }
+
+// console.log(result)
 
 
-// Something change
+// example 1 with higher order function
+// var numbers = [1, 2, 3];
+
+// var result = numbers.map(function(item) {
+//     return item * 2;
+// })
+
+// var result = numbers.map(item => item * 2) //This is so simpler than upper higher order function.
+
+
+// console.log(result)
+
+
+
+// example 2 without higher order function
+// var players = [{
+//         name: "Sakib",
+//         avg: 38.23
+//     },
+//     {
+//         name: "Tamim",
+//         avg: 36.74
+//     },
+//     {
+//         name: "Mushfiq",
+//         avg: 36.78
+//     },
+//     {
+//         name: "Mahmudullah",
+//         avg: 37.12
+//     }
+// ]
+// var playersWithAvgThirtySeven = [];
+// for (let i = 0; i < players.length; i++) {
+
+//     if (players[i].avg >= 37) {
+//         playersWithAvgThirtySeven.push(players[i])
+//     }
+// }
+
+// console.log(playersWithAvgThirtySeven)
+
+// example 2 with higher order function
+// var players = [{
+//         name: "Sakib",
+//         avg: 38.23
+//     },
+//     {
+//         name: "Tamim",
+//         avg: 36.74
+//     },
+//     {
+//         name: "Mushfiq",
+//         avg: 36.78
+//     },
+//     {
+//         name: "Mahmudullah",
+//         avg: 37.12
+//     }
+// ]
+
+// var playersWithAvgThirtySeven = players.filter((player) => {
+//     return player.avg >= 37;
+// })
+
+// console.log(playersWithAvgThirtySeven)
+
+
+// example 3 with higher order function
+// const languages = ["JavaScript", "Python", "PHP", "C"];
+
+// function mapSumit(arr, fn) {
+//     const newArray = [];
+
+//     for (let i = 0; i < arr.length; i++) {
+//         newArray.push(fn(arr[i]))
+//     }
+//     return newArray;
+// }
+
+// const myArray = mapSumit(languages, (language) => {
+//     return language.length
+// });
+
+// console.log(myArray)
+
+
+//Ending Summary 
+/* 
+1. jodi parameter hisebe kono function pass kori or kono function k return kore tokon sei function ta higher order function.
+*/
+
+
+//==================== Asynchronous javaScript callbacks, promises and  async-await<br>
+
+//Ending Summary 
+/* 
+1. 
+*/
