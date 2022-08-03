@@ -654,7 +654,81 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 
 //==================== Asynchronous javaScript callbacks, promises and  async-await<br>
 
+
+// synchronous behavior
+// const processOrder = (customer) => {
+//     console.log(`Processing order for customer 1`);
+
+//     // var currentTime = new Date().getTime();
+//     // while (currentTime + 3000 >= new Date().getTime());
+
+//     setTimeout(() => {
+//         console.log("Hello")
+//     }, 3000)
+
+//     console.log(`Order processed for customer 1`);
+// }
+
+// console.log(`Take order for customer 1`);
+
+// processOrder();
+
+// console.log(`completed order for customer 1`);
+
+
+// asynchronous behavior
+
+// const takeOrder = (customer, callback) => {
+//     console.log(`Take order for ${customer}`)
+//     callback(customer)
+// }
+
+// const processOrder = (customer, callback) => {
+//     console.log(`Processing order for ${customer}`)
+
+//     setTimeout(() => {
+//         console.log(`Cooking completed`)
+//         console.log(`Order processed for ${customer}`)
+
+//         callback(customer)
+//     }, 3000)
+// }
+
+// const orderCompleted = (customer) => {
+//     console.log(`completed order for ${customer}`)
+// }
+
+// takeOrder("Customer 1", (customer) => {
+//     processOrder(customer, (customer) => {
+//         orderCompleted(customer)
+//     })
+// });
+
+
+// promises
+const hasMeeting = true;
+const meeting = new Promise((res, rej) => {
+    if (!hasMeeting) {
+        const meetingDetails = {
+            name: "Technical Meeting",
+            location: "Google Meet",
+            time: "10:00 PM",
+        }
+        res(meetingDetails)
+    } else {
+        rej(new Error("meeting already scheduled!"));
+    }
+})
+
+meeting
+    .then((res) => {
+        console.log(JSON.stringify(res))
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
 //Ending Summary 
-/* 
+/* synchronous way te puro browser block hoye thake r asynchronous way te porer line er kaj korte pare.
 1. 
 */
