@@ -814,3 +814,37 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 2. .then hocce resolve & catch hocce error. sobgulu then er error ekta catch diye pawa jay.
 3. barbar then use na korar cheye async-await use kora best & human readable
 */
+
+
+
+//==================== Recursion in javascript<br>
+// 1 + 2 + 3 + ....... + n
+
+// let total = 0;
+// let n = 3;
+
+// for (let i = 0; i <= n; i++) {
+//     total += i
+// }
+
+// console.log(total)
+
+
+// function sum(n) {
+//     if (n === 0) {
+//         return 0;
+//     } else {
+//         return sum(n - 1) + n;
+//     }
+// }
+
+// console.log(sum(10))
+
+
+// var n = 10009900000;
+// console.log(n * (n + 1) / 2)
+
+//Ending Summary 
+/* 
+1. Programmers should not use recursion recommend by sumit
+*/
