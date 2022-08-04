@@ -706,29 +706,111 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 
 
 // promises
-const hasMeeting = true;
-const meeting = new Promise((res, rej) => {
-    if (!hasMeeting) {
-        const meetingDetails = {
-            name: "Technical Meeting",
-            location: "Google Meet",
-            time: "10:00 PM",
-        }
-        res(meetingDetails)
-    } else {
-        rej(new Error("meeting already scheduled!"));
-    }
-})
+// const hasMeeting = false;
+// const meeting = new Promise((res, rej) => {
+//     if (!hasMeeting) {
+//         const meetingDetails = {
+//             name: "Technical Meeting",
+//             location: "Google Meet",
+//             time: "10:00 PM",
+//         }
+//         res(meetingDetails)
+//     } else {
+//         rej(new Error("meeting already scheduled!"));
+//     }
+// })
 
-meeting
-    .then((res) => {
-        console.log(JSON.stringify(res))
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+// const addToCalender = (meetingDetails) => {
+//     return new Promise((res, rej) => {
+//         const calender = `${meetingDetails.name} has been scheduled on ${meetingDetails.location} at ${meetingDetails.time}`;
+//         res(calender);
+//     })
+// }
+
+// simplify the upper addToCalender function
+// const addToCalender = (meetingDetails) => {
+//     const calender = `${meetingDetails.name} has been scheduled on ${meetingDetails.location} at ${meetingDetails.time}`;
+//     return Promise.resolve(calender);
+
+// }
+
+// meeting
+//     .then(addToCalender)
+//     .then((res) => {
+//         console.log(res)
+//     })
+//     .catch((err) => {
+//         console.log(err.message)
+//     });
+
+// console.log("Hello")
+
+
+// How to handle all promise result at same time
+// const promise1 = Promise.resolve(`Promise 1 resolved!`);
+// const promise2 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve(`Promise 2 resolved!`)
+//     }, 2000)
+// });
+
+// promise1.then((res) => console.log(res))
+// promise2.then((res) => console.log(res))
+
+// Promise.all([promise1, promise2]).then((res) => {
+//     console.log(res) // this resolved data show at same time also starting time same
+// })
+
+// Promise.race([promise1, promise2]).then((res) => {
+//     console.log(res) // first jeta resolve hobe setar data prothome asbe r baki gulu asbe na.
+// })
+
+
+// async-await
+// async function friendlyFunction() {
+//     return `hello`;
+// }
+
+// console.log(friendlyFunction())
+
+
+// const hasMeeting = true;
+// const meeting = new Promise((res, rej) => {
+//     if (!hasMeeting) {
+//         const meetingDetails = {
+//             name: "Technical Meeting",
+//             location: "Google Meet",
+//             time: "10:00 PM",
+//         }
+//         res(meetingDetails)
+//     } else {
+//         rej(new Error("meeting already scheduled!"));
+//     }
+// })
+
+// const addToCalender = (meetingDetails) => {
+//     const calender = `${meetingDetails.name} has been scheduled on ${meetingDetails.location} at ${meetingDetails.time}`;
+//     return Promise.resolve(calender);
+// }
+
+// async function myMeeting() {
+//     try {
+//         const meetingDetails = await meeting;
+//         const calender = await addToCalender(meetingDetails)
+//         console.log(calender)
+//     } catch {
+//         console.log(`Something wrong happened!`)
+//     }
+// }
+
+// myMeeting()
+// console.log("Hello")
+
+
 
 //Ending Summary 
-/* synchronous way te puro browser block hoye thake r asynchronous way te porer line er kaj korte pare.
-1. 
+/* 
+1. synchronous way te puro browser block hoye thake r asynchronous way te porer line er kaj korte pare.
+2. .then hocce resolve & catch hocce error. sobgulu then er error ekta catch diye pawa jay.
+3. barbar then use na korar cheye async-await use kora best & human readable
 */
