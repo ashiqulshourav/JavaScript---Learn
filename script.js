@@ -848,3 +848,39 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 /* 
 1. Programmers should not use recursion recommend by sumit
 */
+
+
+//==================== Event loops & It's function<br>
+// function process(num) {
+//     console.log(num)
+// }
+
+// [1, 2, 3, 4, 5].forEach((i) => {
+//     process(i)
+// });
+
+//Ending Summary 
+/* 
+1. set time out k web api/c++ api te patiye dey, okhan theke callback queue te erpor time shesh howar por abar call stack (main thread) e jay. 
+2. Promise ka web api/c++ api te patiye dey, okhan theke microtask queue te erpor time shesh howar por abar call stack (main thread) e jay. 
+*/
+
+
+
+
+//==================== Primitive vs Reference<br>
+
+
+//Ending Summary 
+/* 
+1. https://www.youtube.com/watch?v=vK8fnE_-NI0&list=PLHiZ4m8vCp9Nflbo9a0pZuLscG_Xc7DKq&index=14
+*/
+
+
+//==================== Best practices of JavaScript - Part 1<br>
+
+
+//Ending Summary 
+/* 
+1. 
+*/
