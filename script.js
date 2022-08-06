@@ -879,6 +879,56 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 
 //==================== Best practices of JavaScript - Part 1<br>
 
+// // Variable এর meaningful নাম দিন
+
+// // Bad Practice
+// let daysll = 10;
+// let ok;
+
+// if(daysll < 30){
+//     ok = true;
+// }
+
+
+// // Good Practice
+// const MAX_ALLOWED_LOGIN_EXPIRATION_DAYS = 30;
+// let daysSinceLastLogin = 10;
+
+// const isUserLoggedIn = daysSinceLastLogin < MAX_ALLOWED_LOGIN_EXPIRATION_DAYS;
+
+
+// // Variable name এ extra word avoid করুন
+
+// // Bad Practice
+// let nameValue;
+// let theProduct;
+
+
+// // Good Practice
+// let value;
+// let product;
+
+
+// এমন ভাবে variable এর নাম দিন যেন purpose মনে রাখতে না হয়
+
+// // Bad Practice
+// const products = ["T-Shirt", "Shoes", "Watches", "Bags"];
+
+// products.forEach((p)=>{
+//     doSomething();
+//     // What does "p" stand for?
+//     doSomethingElse(p)
+// })
+
+// // Bad Practice
+// const products = ["T-Shirt", "Shoes", "Watches", "Bags"];
+
+// products.forEach((product)=>{
+//     doSomething();
+//     // What does "p" stand for?
+//     doSomethingElse(product)
+// })
+
 
 //Ending Summary 
 /* 
