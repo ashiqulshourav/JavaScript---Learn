@@ -929,6 +929,104 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 //     doSomethingElse(product)
 // })
 
+// unnecessary context add করার ও প্রয়োজন নাই
+
+//Bad Practice
+
+// const product = {
+//     productId: 1,
+//     productName: "T-Shirt",
+//     productPrice: 8.99,
+//     productUnits: 12,
+// }
+
+// const product = {
+//     id: 1,
+//     name: "T-Shirt",
+//     price: 8.99,
+//     units: 12,
+// }
+
+// function এর নাম long and descriptive দেয়ার চেষ্টা করুন
+
+// //Bad Practice
+// function email(user){
+//     //implementation
+// }
+
+// //Good Practice
+// function sendEmailToUser(email){
+//     //implementation
+// }
+
+// অনেক arguments avoid করুন
+
+// // Bad Practice
+// function getProducts(fields, fromDate, toDate) {
+//     //implementation
+// }
+
+// // Good Practice
+// function getProducts({ fields, fromDate, toDate }) {
+//     //implementation
+// }
+
+// default argumets use করুন, conditionals না
+
+// // Bad Practice
+// function createShape(type){
+//     const shapeType = type || "circle";
+// }
+
+// // Good Practice
+// function createShape(type = "circle"){
+//     //do something
+// }
+
+
+// parameter হিসেবে flag পাঠানোর প্রয়োজন নাই
+
+// // Bad Practice
+// function createFile(name, isPublic) {
+//     if (isPublic) {
+//         fs.create(`./public/${name}`);
+//     } else {
+//         fs.create(name)
+//     }
+// }
+
+// // Good Practice
+
+// function createFile(name) {
+//     fs.create(name)
+// }
+
+// function createPublicFile(name) {
+//     createFile(`./public/${name}`);
+// }
+
+// একটা function এর মধ্যে multiple কাজ না করাই ভালো।
+
+//Bad Practice
+function notifyUsers(users) {
+    users.forEach((user) => {
+        const userRecord = database.lookup(user);
+        if (userRecord.isVerified()) {
+            notify(user);
+        }
+    })
+}
+
+// Good
+function notifyVerifiedUsers(users) {
+    users.filter(isUserVerified).forEach(notify);
+}
+
+
+function isUserVerified(user) {
+    const userRecord = database.lookup(user);
+    return userRecord.isVerified();
+}
 
 //Ending Summary 
 /* 
