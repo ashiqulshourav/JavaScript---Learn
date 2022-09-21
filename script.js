@@ -1007,28 +1007,494 @@ apiFunction('https://jsonplaceholder.typicode.com/todos/1')
 
 // একটা function এর মধ্যে multiple কাজ না করাই ভালো।
 
-//Bad Practice
-function notifyUsers(users) {
-    users.forEach((user) => {
-        const userRecord = database.lookup(user);
-        if (userRecord.isVerified()) {
-            notify(user);
-        }
-    })
-}
+// //Bad Practice
+// function notifyUsers(users) {
+//     users.forEach((user) => {
+//         const userRecord = database.lookup(user);
+//         if (userRecord.isVerified()) {
+//             notify(user);
+//         }
+//     })
+// }
+
+// // Good
+// function notifyVerifiedUsers(users) {
+//     users.filter(isUserVerified).forEach(notify);
+// }
+
+
+// function isUserVerified(user) {
+//     const userRecord = database.lookup(user);
+//     return userRecord.isVerified();
+// }
+
+// সবসময় Strong Type Check করবেন
+
+// 1 == "1"; // true
+// 1 === "1"; // false
+
+// 0 == false; //true
+// 0 === false; //false
+
+// //full example
+// const val = "123";
+// if (val == "123") {
+//     //reachable 
+//     console.log(`1. ${val}`);
+// }
+
+// if(val == 123){
+//     //reachable
+//     console.log(`2. ${val}`);
+// }
+
+// if(val === 123){
+//     //unreachable
+//     console.log(`3. ${val}`);
+// }
+
+// if(val === "123"){
+//     // reachable
+//     console.log(`4. ${val}`);
+// }
+
+// default object value set করার জন্য 'Object.assign' use করুন
+
+// Bad
+// const shapeConfig = {
+//     type: 'circle',
+//     width: 150,
+//     height: null,
+// };
+
+// function createShape(config) {
+//     config.type = config.type || "circle";
+//     config.width = config.width || 300;
+//     config.height = config.height || 300;
+// }
+
+// createShape(shapeConfig);
 
 // Good
-function notifyVerifiedUsers(users) {
-    users.filter(isUserVerified).forEach(notify);
-}
+// const shapeConfig = {
+//     type: 'circle',
+//     width: 150,
+//     // exclude the 'height' key
+// };
+
+// function createShape(config) {
+//     config = Object.assign({
+//             type: "circle",
+//             width: 300,
+//             height: 300,
+//         },
+//         config);
+// }
+
+// createShape(shapeConfig);
 
 
-function isUserVerified(user) {
-    const userRecord = database.lookup(user);
-    return userRecord.isVerified();
-}
+
+// // gloabal protoypes pollute না করাই ভালো
+// // Bad
+// Array.prototype.myFunction = function myFunction() {
+//     // implementation
+// }
+
+// // Good
+// class MyArray extends Array {
+//     myFunc() {
+//         // implementation
+//     }
+// }
+
+
+// // conditional shorthand ব্যবহার করুন
+// // Bad
+// if (isValid === true) {
+//     // do something
+// }
+
+// if (isValid === false) {
+//     // do soemthing
+// }
+
+// //Good
+// if (isValid) {
+//     //do something
+// }
+
+// if (!isValid) {
+//     //do something
+// }
+
+
+// method chaningn use করুন
+// Bad
+// class Product{
+//     constructor(name){
+//         this.name = name;
+//     }
+//     setUnits(units){
+//         this.units = units;
+//     }
+//     setPrice(price){
+//         this.units = units;
+//     }
+//     save(){
+//         console.log(this.name, this.price, this.units);
+//     }
+// }
+
+// const product = new Product("Bag");
+// product.setPrice(23.99);
+// product.setUnits(12);
+// product.save();
+
+// Good
+// class Product {
+//     constructor(name) {
+//         this.name = name;
+//         return this;
+//     }
+//     setUnits(units) {
+//         this.units = units;
+//         return this;
+//     }
+//     setPrice(price) {
+//         this.units = units;
+//         return this;
+//     }
+//     save() {
+//         console.log(this.name, this.price, this.units);
+//     }
+// }
+
+// const product = new Product("T-Shirt").setPrice(600).setUnits(2).save();
+
+
+
+// // avoid using eval
+// eval("alert('Hi');")
+
+
+
+// don't try omit curly braces and use shorthand
+
+// // 1
+// if (someVariableExists)
+//     x = false;
+
+// // 2
+// if (someVariableExists)
+//     x = false;
+// anotherFunctionCall();
+
+// // one might think that the code above would be equivalent to:
+// if (someVariableExists) {
+//     x = false;
+//     anotherFunctionCall();
+// }
+
+// // Unfortunately, he'd be wrong. In reality, it means
+// if (someVariableExists) {
+//     x = false;
+// }
+// anotherFunctionCall();
+
+
+
+
+// add methods on the protoype when writing constructors
+// bad practice
+// function Player(name, age) {
+//     this.name = name;
+//     this.age = age;
+
+//     this.play = function() {
+//         console.log(`${this.name} is playing`);
+//     }
+// }
+
+// let sakib = new Player('Sakib', 35);
+// sakib.play();
+
+
+// bad practice
+// function Player(name, age) {
+//     this.name = name;
+//     this.age = age;
+// }
+
+// Player.prototype.play = function() {
+//     console.log(`${this.name} is playing`);
+// }
+
+// let sakib = new Player('Sakib', 35);
+// sakib.play();
+
+
+
+// Declare varables outside of the for statement
+// Bad
+// for (var i = 0; i < someArry.length; i++) {
+//     var container = document.getElementById("container");
+//     container.innerHTML += "My number: " + i;
+//     console.log(i);
+// }
+
+// // Good
+// var container = document.getElementById('container');
+// var len = someArry.length;
+// for (var i = 0; i < len; i++) {
+//     container.innerHTML += 'my number: ' + i;
+//     console.log(i)
+// }
+
+// Use let, var, const as much as possible instead of var
+
+
+// omit the var keywords & use commas instead
+
+// // bad
+// var someItem = "Some string";
+// var anotherItem = "another string";
+// var oneMoreItem = "One more string";
+
+// // Good
+// var someItem = "Some string",
+//     anotherItem = "another string",
+//     oneMoreItem = "One more string";
+
+
+// Always use semicolon
+// bad
+// var someItem = 'some string'
+
+// function doSomething() {
+//     return "Something"
+// }
+
+// // Good
+// var someItem = "Some string";
+
+// function doSomething() {
+//     return "Something";
+// }
+
+
+
+// use IIFE as much as possible
+// (function doSomething(){
+//     return{
+//         name: "Ashiqul",
+//         lastName: "Islam"
+//     }
+// })()
+
+
+// avoid using global
+// // bad
+// var current = null;
+
+// function init() {
+//     // do something
+// }
+
+// function change() {
+//     //do something
+// }
+
+// function verify() {
+//     //do something
+// }
+
+
+// Good
+
+// const myModule = (function() {
+
+//     var current = null;
+
+//     function init() {
+//         // do something
+//         console.log("Hello")
+//     }
+
+//     function change() {
+//         //do something
+//     }
+
+//     function verify() {
+//         //do something
+//     }
+
+//     return {
+//         init,
+//         change,
+//         verify,
+//         bortoman: current,
+//     }
+
+// })();
+
+// myModule.init();
 
 //Ending Summary 
 /* 
 1. 
 */
+
+
+
+
+//==================== XMLHttp Request - Ajax
+
+// const getButton = document.querySelector('#get-data');
+// const sendButton = document.querySelector('#send-data');
+
+// const sendRequest = function(method, url, data) {
+//     const promise = new Promise((resolve, reject) => {
+
+//         const xhr = new XMLHttpRequest();
+
+//         // GET, POST, PUT, DELETE, OPTIONS, HEAD
+
+//         xhr.open(method, url);
+//         xhr.responseType = "json";
+//         xhr.setRequestHeader('Content-Type', 'application/json');
+//         xhr.send(data);
+//         xhr.onload = function() {
+//             if (xhr.status >= 400) {
+//                 reject(xhr.response)
+//             } else {
+//                 resolve(xhr.response);
+//             }
+//         };
+//         xhr.onerror = function() {
+//             reject("Something was wrong!");
+//         }
+//     });
+
+//     return promise;
+// }
+
+// const getData = function() {
+//     sendRequest('GET', 'https://jsonplaceholder.typicode.com/todos/1')
+//         .then(responseData => {
+//             console.log(responseData)
+//         })
+// };
+
+// const sendData = function() {
+//     sendRequest('POST', 'https://jsonplaceholder.typicode.com/post', JSON.stringify({
+//             title: "foo",
+//             body: "bar",
+//             userId: 1,
+//         }))
+//         .then(responseData => {
+//             console.log(responseData)
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// };
+
+// getButton.addEventListener('click', getData);
+// sendButton.addEventListener('click', sendData);
+
+//Ending Summary 
+/* 
+1. 
+*/
+
+
+
+//==================== ES6 Symbols
+
+// let symbol1 = Symbol(); // normal symbol
+// let symbol2 = Symbol("I'm Symbol 1"); //  symbol with description
+// console.log(symbol1)
+
+//Ending Summary 
+/* 
+1. 
+*/
+// function setCookie(name, value, days) {
+//     var expires = "";
+//     if (days) {
+//         var date = new Date();
+//         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+//         expires = "; expires=" + date.toUTCString();
+//     }
+//     document.cookie = name + "=" + (value || "") + expires + "; path=/";
+// }
+
+// function getCookie(name) {
+//     var nameEQ = name + "=";
+//     var ca = document.cookie.split(';');
+//     for (var i = 0; i < ca.length; i++) {
+//         var c = ca[i];
+//         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+//         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+//     }
+//     return null;
+// }
+
+// function eraseCookie(name) {
+//     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+// }
+
+
+// setCookie('oldUser', 'Yes', 1);
+
+// var x = getCookie('oldUser');
+// console.log(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// প্রতিটি আইটেম এর মধ্যে লাস্ট আইটেম এর ইনডেক্স ধরে ফাস্ট আইটেম থেকে এড করবে।
+
+// jQuery(document).ready(function() {
+//     let box = jQuery('.box');
+//     var j = 0;
+//     for (let i = box.length - 1; i >= 0; i--) {
+//         j++;
+//         jQuery('.box:eq(' + i + ')').css('z-index', j);
+//     }
+// })
